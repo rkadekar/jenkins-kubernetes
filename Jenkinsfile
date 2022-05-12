@@ -4,7 +4,7 @@ pipeline {
   agent {
     kubernetes {
       label "Jenkins-${env.JOB_NAME}"
-      yaml libraryResource('podTemplates/golang-maven.yaml')
+      yaml libraryResource('shared-build-agents/podTemplates/golang-maven.yaml')
     }
   }
   stages {
