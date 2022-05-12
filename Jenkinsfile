@@ -3,7 +3,6 @@
 pipeline {
   agent {
     kubernetes {
-      label "Jenkins-${env.JOB_NAME}"
       yaml libraryResource('podTemplates/golang-maven.yaml')
     }
   }
