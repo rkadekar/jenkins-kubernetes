@@ -3,6 +3,7 @@
 pipeline {
   agent {
     kubernetes {
+      defaultContainer 'maven'
       yaml libraryResource('podTemplates/golang-maven.yaml')
     }
   }
