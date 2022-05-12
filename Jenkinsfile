@@ -16,9 +16,7 @@ pipeline {
     stage('Run Maven') {
       steps {
         container('maven') {
-          stage('Build a Maven project') {
             sh 'mvn -B -ntp clean install'
-          }
         }
       }
     }
