@@ -1,5 +1,12 @@
 @Library('shared-build-agents@main') _
-podTemplate(yaml: readTrusted('podTemplates/golang-maven.yaml')) {
+
+pipeline {
+  agent {
+    kubernetes {
+      //label "Jenkins-${env.JOB_NAME}"
+      yaml libraryResource('podTemplates/golang-maven.yaml')
+    }
+  }
   node(POD_LABEL) {
     stage('Get a Maven project') {
       git 'https://github.com/jenkinsci/kubernetes-plugin.git'
