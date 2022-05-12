@@ -1,4 +1,4 @@
-podTemplate(yaml: readTrusted('pod.yaml')) {
+podTemplate(yaml: readTrusted('build-agent.yaml')) {
   node(POD_LABEL) {
     stage('Get a Maven project') {
       git 'https://github.com/jenkinsci/kubernetes-plugin.git'
