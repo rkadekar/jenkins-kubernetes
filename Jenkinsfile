@@ -7,7 +7,7 @@ pipeline {
       yaml libraryResource('podTemplates/golang-maven.yaml')
     }
   }
-  node(POD_LABEL) {
+  stages {
     stage('Get a Maven project') {
       git 'https://github.com/jenkinsci/kubernetes-plugin.git'
       container('maven') {
