@@ -7,13 +7,18 @@ pipeline {
     }
   }
   stages {
-    stage('Run Maven') {
-      steps {
-        container('maven') {
-          sh 'git clone https://github.com/jenkinsci/kubernetes-plugin.git'
-          sh 'mvn -B -ntp clean install'
+    stage ('checkout scm') {
+        steps {
+            // Please avoid committing your test changes to this repository
+            git branch: 'master', url: "https://github.com/kubesphere/devops-maven-sample.git"
         }
-      }
+    }
+    stage ('unit test') {
+        steps {
+            container ('maven') {
+                sh 'mvn clean test'
+            }
+        }
     }
   }
 }
