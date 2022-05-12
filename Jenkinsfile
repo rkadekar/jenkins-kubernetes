@@ -3,13 +3,15 @@
 pipeline {
   agent {
     kubernetes {
-      //label "Jenkins-${env.JOB_NAME}"
+      label "Jenkins-${env.JOB_NAME}"
       yaml libraryResource('podTemplates/golang-maven.yaml')
     }
   }
-  node(POD_LABEL) {
+  stages {
     stage('Get a Maven project') {
-      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
+      sh 'git "https://github.com/jenkinsci/kubernetes-plugin.git"'
+    }
+    stage('Run Maven') {
       container('maven') {
         stage('Build a Maven project') {
           sh 'mvn -B -ntp clean install'
