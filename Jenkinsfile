@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Get a Maven project') {
       steps {
-        sh 'git "https://github.com/jenkinsci/kubernetes-plugin.git"'
+        sh 'git clone https://github.com/jenkinsci/kubernetes-plugin.git'
       }
     }
     stage('Run Maven') {
